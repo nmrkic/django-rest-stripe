@@ -11,7 +11,7 @@ INSTALLED_APPS = [
 ```
 2. Include django_rest_stripe URLconf in urls.py:
 ```
-url(r'^django_rest_stripe', inclued('django_rest_stripe.urls'))
+url(r'^api/stripe', include('django_rest_stripe.urls'))
 ```
 3. Run `python manage.py migrate`
 

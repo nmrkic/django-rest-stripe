@@ -30,7 +30,7 @@ def find_version(*file_paths):
 
 setup(
     name='django-rest-stripe',
-    version=find_version('django_rest_stripe', '__init__.py'),
+    version=find_version('__init__.py'),
     packages=['django_rest_stripe'],
     include_package_data=True,
     license='Apache 2.0',
@@ -54,6 +54,13 @@ setup(
         "Django==2.2.3",
         "djangorestframework==3.10.1",
         "stripe==2.32.1"
-    ]
+    ],
+    tests_require=[
+        'mock',
+        'nose',
+        'django_nose',
+        'coverage'
+    ],
+    test_suite='runtests.runtests'
 )
 
