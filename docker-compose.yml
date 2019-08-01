@@ -1,0 +1,16 @@
+version: '2'
+
+volumes:
+  esdata:
+    driver: local
+
+services:
+  ds_postgres:
+    image: postgres:9.4
+    container_name: ds_postgres
+    environment:
+      - POSTGRES_USER=djangostripe
+      - POSTGRES_PASSWORD=djangostripe
+      - DB_NAME=djangostripe, djangostripe_test
+    ports:
+      - '5432:5432'

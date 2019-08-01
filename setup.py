@@ -31,7 +31,12 @@ def find_version(*file_paths):
 setup(
     name='django-rest-stripe',
     version=find_version('__init__.py'),
-    packages=['django_rest_stripe'],
+    packages=[
+        'django_rest_stripe',
+        'django_rest_stripe.models',
+        'django_rest_stripe.migrations',
+        'django_rest_stripe.apis'
+    ],
     include_package_data=True,
     license='Apache 2.0',
     description='Django Rest Stripe payment implementation.',
@@ -53,7 +58,8 @@ setup(
     install_requires=[
         "Django==2.2.3",
         "djangorestframework==3.10.1",
-        "stripe==2.32.1"
+        "stripe==2.32.1",
+        "psycopg2==2.7.3.2"
     ],
     tests_require=[
         'mock',
@@ -63,4 +69,3 @@ setup(
     ],
     test_suite='runtests.runtests'
 )
-

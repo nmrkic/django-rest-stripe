@@ -10,3 +10,5 @@ NOSE_ARGS = [
     '--cover-erase',
     '--cover-package=django_rest_stripe'
 ]
+
+ROOT_URLCONF = 'django_rest_stripe.django_rest_stripe.urls'

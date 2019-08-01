@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .apis import StripeProductAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('stripe/product/', StripeProductAPI.as_view(), name="stripe-product")
 ]
