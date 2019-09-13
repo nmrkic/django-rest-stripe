@@ -36,16 +36,23 @@ class StripeProductAdmin(admin.ModelAdmin):
 @admin.register(StripePlan)
 class StripePlanAdmin(admin.ModelAdmin):
     readonly_fields = ['plan_id']
+    list_display = ['product', 'nickname', 'interval', 'currency', 'amount']
 
     def get_queryset(self, request):
         stripe.api_key = settings.STRIPE_API_KEY
         plans = stripe.Plan.list()
         print(plans)
-        # for prod in plans['data']:
-        #     StripePlan.objects.get_or_create(
-        #         name=prod['name'],
-        #         product_id=prod['id']
-        #     )
+        for prod in plans['data']:
+            product = StripeProduct.objects.get(product_id=prod['product'])
+            StripePlan.objects.get_or_create(
+                product=product,
+                nickname=prod['nickname'],
+                interval=prod['interval'],
+                currency=prod['currency'],
+                amount=prod['amount'],
+                plan_id=prod['id'],
+                active=prod['active'],
+            )
         qs = super(StripePlanAdmin, self).get_queryset(request)
         return qs
 
@@ -60,7 +67,6 @@ class StripePlanAdmin(admin.ModelAdmin):
                 currency=obj.currency,
                 amount=obj.amount,
             )
-            print(plan)
             obj.plan_id = plan['id']
-            obj.save()
-
+            obj.active = plan['active']
+        obj.save()

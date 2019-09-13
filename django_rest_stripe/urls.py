@@ -13,11 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
-from .apis import StripeProductAPI
+from django_rest_stripe.apis import StripePlansAPI
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('stripe/product/', StripeProductAPI.as_view(), name="stripe-product")
+    path('plan/', StripePlansAPI.as_view(), name="stripe-plan")
 ]
