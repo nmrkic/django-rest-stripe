@@ -35,7 +35,8 @@ setup(
         'django_rest_stripe',
         'django_rest_stripe.models',
         'django_rest_stripe.migrations',
-        'django_rest_stripe.apis'
+        'django_rest_stripe.apis',
+        'django_rest_stripe.serializers'
     ],
     include_package_data=True,
     license='Apache 2.0',
