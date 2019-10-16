@@ -7,3 +7,4 @@ class StripeSubscription(models.Model):
     customer = models.ForeignKey(StripeCustomer, null=False, on_delete=models.CASCADE)
     items = models.ManyToManyField(StripePlan, related_name="items")
     subscription_id = models.CharField(max_length=256)
+    is_active = models.BooleanField(default=True)
