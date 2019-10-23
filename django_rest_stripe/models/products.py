@@ -4,7 +4,8 @@ PLAN_INTERVAL = [
     ('day', 'day'),
     ('week', 'week'),
     ('month', 'month'),
-    ('year', 'year')
+    ('year', 'year'),
+    ('quarterly', 'quarterly'),
 ]
 
 

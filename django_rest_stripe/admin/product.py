@@ -44,10 +44,14 @@ class StripePlanAdmin(admin.ModelAdmin):
         print(plans)
         for prod in plans['data']:
             product = StripeProduct.objects.get(product_id=prod['product'])
+            interval = prod['interval']
+            if 'month' in prod['interval'] and prod['interval_count'] == 3:
+                interval = 'quarterly'
+
             StripePlan.objects.get_or_create(
                 product=product,
                 nickname=prod['nickname'],
-                interval=prod['interval'],
+                interval=interval,
                 currency=prod['currency'],
                 amount=prod['amount'],
                 plan_id=prod['id'],
@@ -59,11 +63,18 @@ class StripePlanAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         print(obj, form, change)
         if not change:
+            interval = obj.interval
+            interval_count = 1
+            if 'quarterly' in obj.interval:
+                interval = 'month'
+                interval_count = 3
+
             stripe.api_key = settings.STRIPE_API_KEY
             plan = stripe.Plan.create(
                 product=obj.product.product_id,
                 nickname=obj.nickname,
-                interval=obj.interval,
+                interval=interval,
+                interval_count=interval_count,
                 currency=obj.currency,
                 amount=obj.amount,
             )
