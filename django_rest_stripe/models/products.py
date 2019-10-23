@@ -21,7 +21,7 @@ class StripePlan(models.Model):
     plan_id = models.CharField(max_length=150)
     product = models.ForeignKey(StripeProduct, null=False, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=150)
-    interval = models.CharField(max_length=6, choices=PLAN_INTERVAL)
+    interval = models.CharField(max_length=10, choices=PLAN_INTERVAL)
     currency = models.CharField(max_length=150)
     amount = models.IntegerField()
     active = models.BooleanField(default=False)
