@@ -51,7 +51,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content'
     ],
     install_requires=[
-        "Django==2.2.3",
+        "Django==2.2.4",
         "djangorestframework==3.10.1",
         "stripe==2.32.1"
     ]
