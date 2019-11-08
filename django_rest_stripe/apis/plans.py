@@ -74,7 +74,7 @@ class StripePlansAPI(APIView):
                     subscription.save()
         except Exception as e:
             logger.exception("Subscription failed with error {}".format(str(e)))
-            Response({"message": "Failed"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Failed"}, status=status.HTTP_400_BAD_REQUEST)
 
         subscribed_plan = m_django_rest_stripe.StripePlan.objects.filter(active=True, plan_id=subs_data['plan']).first()
         serializer = s_django_rest_stripe.StripePlanSerializer(subscribed_plan, many=False)
