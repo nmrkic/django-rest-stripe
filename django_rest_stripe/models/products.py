@@ -18,6 +18,7 @@ class StripeProduct(models.Model):
 
 
 class StripePlan(models.Model):
+    index = models.IntegerField(default=1)
     plan_id = models.CharField(max_length=150)
     product = models.ForeignKey(StripeProduct, null=False, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=150)

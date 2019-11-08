@@ -14,7 +14,7 @@ class StripePlansAPI(APIView):
 
     def get(self, request):
         stripe.api_key = settings.STRIPE_API_KEY
-        plans = m_django_rest_stripe.StripePlan.objects.filter(active=True)
+        plans = m_django_rest_stripe.StripePlan.objects.filter(active=True).order_by('index')
         serializer = s_django_rest_stripe.StripePlanSerializer(plans, many=True)
         return Response({"plans": serializer.data}, status=status.HTTP_200_OK)
 
