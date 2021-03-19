@@ -52,7 +52,7 @@ setup(
     ],
     install_requires=[
         "Django==2.2.3",
-        "djangorestframework==3.10.1",
+        "djangorestframework==3.11.2",
         "stripe==2.32.1"
     ]
 )
